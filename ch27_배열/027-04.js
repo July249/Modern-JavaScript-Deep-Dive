@@ -121,4 +121,29 @@ console.log(Object.getOwnPropertyDescriptors(arr11));
 
 // Array.from은 두 번째 매개변수로 전달한 콜백 함수의 반환값으로 구성된 배열을 반환한다
 const arr12 = Array.from({ length: 3 }, (_, i) => i);
-console.log(arr12);
+console.log(arr12); // [0, 1, 2]
+
+// 유사 배열 객체와 이터러블 객체
+/* 
+유사 배열 객체는 마치 배열처럼 인덱스로 프로퍼티 값에 접근할 수 있고 length 프로퍼티를 갖는 객체를 말한다
+
+유사배열 객체는 마치 배열처럼 for 문으로 순회할 수도 있다
+*/
+// 27-30 - 유사 배열 객체
+const arrayLike = {
+  0: 'apple',
+  1: 'banana',
+  2: 'orange',
+  length: 3,
+};
+
+// 유사 배열 객체는 마치 배열처럼 for 문으로 순회할 수도 있다
+for (let i = 0; i < arrayLike.length; i++) {
+  console.log(arrayLike[i]); // apple banana orange
+}
+
+/* 
+이터러블 객체는 Symbol.iterator 메서드를 구현하여 for ... of 문으로 순회할 수 있으며, 스프레드 문법과 배열 디스트럭처링 할당의 대상으로 사용할 수 있는 객체를 말한다
+
+ES6에서 제공하는 빌트인 이터러블은 Array, String, Map, Set, DOM Collection(NodeList, HTMLCollection), arguments 등이 있다
+*/
